@@ -24,7 +24,7 @@ public:
 
     /// IsArduinoConnected is used to tell whether there is currently an arduino connected
     /// @return Returns the connection status of the arduino
-    bool IsArduinoConnected() {return bArduinoConnected;}
+    bool IsArduinoConnected() {return m_bArduinoConnected;}
 
     /// SendCommand is used to send a string command to the arduino
     /// @param[in] strCommand - the string command that should be sent to the arduino
@@ -39,11 +39,9 @@ private:
     // ----------------------
     // Member variables
     // ----------------------
-    QSerialPort *portArduino; ///< Stores the connectiong to port for the arduino
-    QString strArduinoPortName; ///< The port nane of the serial port that the arduino is connected to
-    bool bArduinoConnected = false; ///< Whether the arduino is connected or not
-
-
+    QSerialPort *m_portArduino; ///< Stores the connectiong to port for the arduino
+    QString m_strArduinoPortName; ///< The port nane of the serial port that the arduino is connected to
+    bool m_bArduinoConnected = false; ///< Whether the arduino is connected or not
 
 };
 

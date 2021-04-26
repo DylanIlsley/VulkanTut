@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
-    <height>400</height>
+    <width>591</width>
+    <height>350</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,33 +16,11 @@
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QSlider" name="verticalSlider">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>10</y>
-      <width>30</width>
-      <height>200</height>
-     </rect>
-    </property>
-    <property name="mouseTracking">
-     <bool>false</bool>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="maximum">
-     <number>24</number>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Vertical</enum>
-    </property>
-    <property name="tickPosition">
-     <enum>QSlider::TicksBelow</enum>
-    </property>
-   </widget>
-   <widget class="QTimeEdit" name="timeEdit">
+   <widget class="QTimeEdit" name="StartTime">
     <property name="geometry">
      <rect>
       <x>400</x>
@@ -69,7 +47,7 @@
      </time>
     </property>
    </widget>
-   <widget class="QTimeEdit" name="timeEdit_2">
+   <widget class="QTimeEdit" name="StopTime">
     <property name="geometry">
      <rect>
       <x>400</x>
@@ -131,7 +109,10 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="pushCycleButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -141,7 +122,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>Save</string>
+     <string>Push Cycle</string>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QComboBox" name="comboBox">
@@ -178,6 +162,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_2">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>430</x>
@@ -196,7 +183,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>700</width>
+     <width>591</width>
      <height>21</height>
     </rect>
    </property>
@@ -205,11 +192,35 @@
      <string>File</string>
     </property>
     <addaction name="actionExit"/>
+    <addaction name="actionOpen_Cycle"/>
+    <addaction name="actionExit_2"/>
+    <addaction name="actionSave_Cycle_As"/>
+    <addaction name="actionExit_3"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionExit">
+   <property name="text">
+    <string>New Cycle</string>
+   </property>
+  </action>
+  <action name="actionOpen_Cycle">
+   <property name="text">
+    <string>Open Cycle</string>
+   </property>
+  </action>
+  <action name="actionExit_2">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionSave_Cycle_As">
+   <property name="text">
+    <string>Save As</string>
+   </property>
+  </action>
+  <action name="actionExit_3">
    <property name="text">
     <string>Exit</string>
    </property>
