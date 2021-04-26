@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -10,11 +10,13 @@ CONFIG += c++11
 
 SOURCES += \
     analogclock.cpp \
+    arduinoclient.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     analogclock.h \
+    arduinoclient.h \
     mainwindow.h
 
 FORMS += \
