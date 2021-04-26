@@ -250,6 +250,7 @@ Makefile: ../ProjectGrow/ProjectGrow.pro C:/Qt/5.15.2/mingw81_64/mkspecs/win32-g
 		../ProjectGrow/ProjectGrow.pro \
 		C:/Qt/5.15.2/mingw81_64/lib/Qt5Widgets.prl \
 		C:/Qt/5.15.2/mingw81_64/lib/Qt5Gui.prl \
+		C:/Qt/5.15.2/mingw81_64/lib/Qt5SerialPort.prl \
 		C:/Qt/5.15.2/mingw81_64/lib/Qt5Core.prl \
 		C:/Qt/5.15.2/mingw81_64/lib/qtmain.prl \
 		C:/Qt/5.15.2/mingw81_64/mkspecs/features/build_pass.prf
@@ -434,6 +435,7 @@ C:/Qt/5.15.2/mingw81_64/mkspecs/features/lex.prf:
 ../ProjectGrow/ProjectGrow.pro:
 C:/Qt/5.15.2/mingw81_64/lib/Qt5Widgets.prl:
 C:/Qt/5.15.2/mingw81_64/lib/Qt5Gui.prl:
+C:/Qt/5.15.2/mingw81_64/lib/Qt5SerialPort.prl:
 C:/Qt/5.15.2/mingw81_64/lib/Qt5Core.prl:
 C:/Qt/5.15.2/mingw81_64/lib/qtmain.prl:
 C:/Qt/5.15.2/mingw81_64/mkspecs/features/build_pass.prf:
