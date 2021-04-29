@@ -10,15 +10,17 @@
 ///-------------------------------------------------------------------------------------
 #include <QtSerialPort/QSerialPort>
 #include <QString>
+#include <QObject>
 ///-------------------------------------------------------------------------------------
 /// LOCAL INCLUDE FILES
 ///-------------------------------------------------------------------------------------
 
-class ArduinoClient
+class ArduinoClient : public QObject
 {
+    Q_OBJECT
 public:
     // Constructor
-    ArduinoClient();
+    explicit ArduinoClient(QObject * parent = 0);
     // Destructor
     ~ArduinoClient();
 
@@ -30,7 +32,19 @@ public:
     /// @param[in] strCommand - the string command that should be sent to the arduino
     /// @return Returns whether the command was sent to the arduino
     bool SendCommand(QString strCommand);
+
+signals:
+    // TODO: Change the byte array to something more user friendly - like a string or byte
+    void ArduinoDataReceived(QByteArray readData);
+    // TODO: Think about expansion so multiple instances of arduino client can be supported with different port names
+    void ErrorOccurred(QSerialPort::SerialPortError SerialPortError);
+
 private:
+    // ----------------------
+    // Input handling functions
+    // ----------------------
+    void HandleReadyRead();
+
     // ----------------------
     // Const variables
     // ----------------------
@@ -42,6 +56,9 @@ private:
     QSerialPort *m_portArduino; ///< Stores the connectiong to port for the arduino
     QString m_strArduinoPortName; ///< The port nane of the serial port that the arduino is connected to
     bool m_bArduinoConnected = false; ///< Whether the arduino is connected or not
+
+    QByteArray m_DataBuffer;
+
 
 };
 

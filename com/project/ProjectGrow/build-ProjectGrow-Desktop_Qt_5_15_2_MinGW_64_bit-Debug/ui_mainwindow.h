@@ -13,11 +13,10 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QComboBox>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenu>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTimeEdit>
@@ -35,25 +34,27 @@ public:
     QAction *actionSave_Cycle_As;
     QAction *actionExit_3;
     QWidget *centralwidget;
-    QTimeEdit *StartTime;
+    QWidget *horizontalLayoutWidget;
+    QHBoxLayout *horizontalLayout;
+    QPushButton *pushCycleButton;
+    QPushButton *pushButton_2;
+    QWidget *gridLayoutWidget;
+    QGridLayout *gridLayout_2;
+    AnalogClock *widgetAnalogClock;
+    QLabel *LightStatus;
+    QWidget *widget;
+    QGridLayout *gridLayout;
+    QLabel *label_3;
     QTimeEdit *StopTime;
     QLabel *label_2;
-    QLabel *label_3;
-    QLabel *label_4;
-    QPushButton *pushCycleButton;
-    QComboBox *comboBox;
-    QLabel *label_5;
-    AnalogClock *widgetAnalogClock;
-    QPushButton *pushButton_2;
-    QMenuBar *menubar;
-    QMenu *menuFile;
+    QTimeEdit *StartTime;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(591, 350);
+        MainWindow->resize(800, 420);
         MainWindow->setAutoFillBackground(false);
         MainWindow->setStyleSheet(QString::fromUtf8(""));
         actionExit = new QAction(MainWindow);
@@ -68,62 +69,104 @@ public:
         actionExit_3->setObjectName(QString::fromUtf8("actionExit_3"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        StartTime = new QTimeEdit(centralwidget);
+        horizontalLayoutWidget = new QWidget(centralwidget);
+        horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
+        horizontalLayoutWidget->setGeometry(QRect(390, 310, 361, 71));
+        horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        pushCycleButton = new QPushButton(horizontalLayoutWidget);
+        pushCycleButton->setObjectName(QString::fromUtf8("pushCycleButton"));
+        pushCycleButton->setEnabled(true);
+        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(5);
+        sizePolicy.setHeightForWidth(pushCycleButton->sizePolicy().hasHeightForWidth());
+        pushCycleButton->setSizePolicy(sizePolicy);
+        pushCycleButton->setFlat(false);
+
+        horizontalLayout->addWidget(pushCycleButton);
+
+        pushButton_2 = new QPushButton(horizontalLayoutWidget);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_2->setEnabled(false);
+        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(pushButton_2->sizePolicy().hasHeightForWidth());
+        pushButton_2->setSizePolicy(sizePolicy1);
+
+        horizontalLayout->addWidget(pushButton_2);
+
+        gridLayoutWidget = new QWidget(centralwidget);
+        gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
+        gridLayoutWidget->setGeometry(QRect(20, 20, 321, 361));
+        gridLayout_2 = new QGridLayout(gridLayoutWidget);
+        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
+        gridLayout_2->setContentsMargins(0, 0, 0, 0);
+        widgetAnalogClock = new AnalogClock(gridLayoutWidget);
+        widgetAnalogClock->setObjectName(QString::fromUtf8("widgetAnalogClock"));
+        QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(5);
+        sizePolicy2.setHeightForWidth(widgetAnalogClock->sizePolicy().hasHeightForWidth());
+        widgetAnalogClock->setSizePolicy(sizePolicy2);
+
+        gridLayout_2->addWidget(widgetAnalogClock, 0, 0, 1, 1);
+
+        LightStatus = new QLabel(gridLayoutWidget);
+        LightStatus->setObjectName(QString::fromUtf8("LightStatus"));
+        LightStatus->setAutoFillBackground(false);
+        LightStatus->setAlignment(Qt::AlignCenter);
+
+        gridLayout_2->addWidget(LightStatus, 1, 0, 1, 1);
+
+        widget = new QWidget(centralwidget);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(390, 20, 361, 271));
+        gridLayout = new QGridLayout(widget);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        gridLayout->setVerticalSpacing(48);
+        gridLayout->setContentsMargins(0, 48, 0, 48);
+        label_3 = new QLabel(widget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+
+        gridLayout->addWidget(label_3, 1, 0, 1, 1);
+
+        StopTime = new QTimeEdit(widget);
+        StopTime->setObjectName(QString::fromUtf8("StopTime"));
+        QSizePolicy sizePolicy3(QSizePolicy::Minimum, QSizePolicy::Preferred);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(StopTime->sizePolicy().hasHeightForWidth());
+        StopTime->setSizePolicy(sizePolicy3);
+        StopTime->setButtonSymbols(QAbstractSpinBox::UpDownArrows);
+        StopTime->setTime(QTime(11, 30, 0));
+
+        gridLayout->addWidget(StopTime, 1, 1, 1, 1);
+
+        label_2 = new QLabel(widget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+
+        gridLayout->addWidget(label_2, 0, 0, 1, 1);
+
+        StartTime = new QTimeEdit(widget);
         StartTime->setObjectName(QString::fromUtf8("StartTime"));
-        StartTime->setGeometry(QRect(400, 100, 100, 22));
+        sizePolicy3.setHeightForWidth(StartTime->sizePolicy().hasHeightForWidth());
+        StartTime->setSizePolicy(sizePolicy3);
+        StartTime->setButtonSymbols(QAbstractSpinBox::UpDownArrows);
         StartTime->setDate(QDate(2021, 4, 14));
         StartTime->setCalendarPopup(true);
         StartTime->setTime(QTime(6, 30, 0));
-        StopTime = new QTimeEdit(centralwidget);
-        StopTime->setObjectName(QString::fromUtf8("StopTime"));
-        StopTime->setGeometry(QRect(400, 150, 100, 22));
-        StopTime->setTime(QTime(11, 30, 0));
-        label_2 = new QLabel(centralwidget);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(300, 100, 70, 20));
-        label_3 = new QLabel(centralwidget);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(300, 150, 70, 20));
-        label_4 = new QLabel(centralwidget);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(80, 250, 80, 50));
-        label_4->setAutoFillBackground(true);
-        label_4->setAlignment(Qt::AlignCenter);
-        pushCycleButton = new QPushButton(centralwidget);
-        pushCycleButton->setObjectName(QString::fromUtf8("pushCycleButton"));
-        pushCycleButton->setEnabled(true);
-        pushCycleButton->setGeometry(QRect(280, 250, 111, 41));
-        pushCycleButton->setFlat(false);
-        comboBox = new QComboBox(centralwidget);
-        comboBox->setObjectName(QString::fromUtf8("comboBox"));
-        comboBox->setGeometry(QRect(400, 20, 121, 22));
-        label_5 = new QLabel(centralwidget);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(300, 20, 51, 20));
-        widgetAnalogClock = new AnalogClock(centralwidget);
-        widgetAnalogClock->setObjectName(QString::fromUtf8("widgetAnalogClock"));
-        widgetAnalogClock->setGeometry(QRect(20, 10, 200, 200));
-        pushButton_2 = new QPushButton(centralwidget);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setEnabled(false);
-        pushButton_2->setGeometry(QRect(430, 250, 111, 41));
+
+        gridLayout->addWidget(StartTime, 0, 1, 1, 1);
+
         MainWindow->setCentralWidget(centralwidget);
-        menubar = new QMenuBar(MainWindow);
-        menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 591, 21));
-        menuFile = new QMenu(menubar);
-        menuFile->setObjectName(QString::fromUtf8("menuFile"));
-        MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
-
-        menubar->addAction(menuFile->menuAction());
-        menuFile->addAction(actionExit);
-        menuFile->addAction(actionOpen_Cycle);
-        menuFile->addAction(actionExit_2);
-        menuFile->addAction(actionSave_Cycle_As);
-        menuFile->addAction(actionExit_3);
 
         retranslateUi(MainWindow);
 
@@ -138,13 +181,11 @@ public:
         actionExit_2->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
         actionSave_Cycle_As->setText(QCoreApplication::translate("MainWindow", "Save As", nullptr));
         actionExit_3->setText(QCoreApplication::translate("MainWindow", "Exit", nullptr));
-        label_2->setText(QCoreApplication::translate("MainWindow", "Start Time", nullptr));
-        label_3->setText(QCoreApplication::translate("MainWindow", "Stop Time", nullptr));
-        label_4->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:22pt; font-weight:600; color:#aa0000;\">OFF</span></p></body></html>", nullptr));
         pushCycleButton->setText(QCoreApplication::translate("MainWindow", "Push Cycle", nullptr));
-        label_5->setText(QCoreApplication::translate("MainWindow", "Light Cycle", nullptr));
         pushButton_2->setText(QCoreApplication::translate("MainWindow", "Pause", nullptr));
-        menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
+        LightStatus->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:22pt; font-weight:600; color:#aa0000;\">OFF</span></p></body></html>", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt;\">Stop Time</span></p></body></html>", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt;\">Start Time</span></p></body></html>", nullptr));
     } // retranslateUi
 
 };

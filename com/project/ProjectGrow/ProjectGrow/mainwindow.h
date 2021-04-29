@@ -8,6 +8,7 @@
 /// SYSTEM INCLUDE FILES
 ///-------------------------------------------------------------------------------------
 #include <QMainWindow>
+#include <QTime>
 /// -------------------------------------------------------------------------------------
 /// LOCAL INCLUDE FILES
 ///-------------------------------------------------------------------------------------
@@ -25,9 +26,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+signals:
+    void LightCycleChanged(QTime StartTime, QTime StopTime);
+
 private slots:
     /// This slot is responsible for grabbing the needed time data for the arduino and pushing the cycle to the arduino
     void on_pushCycleButton_clicked();
+     void DataReceived(QByteArray readData);
 
 private:
     //TODO: A secondary function should be made for receiving ACKs from the Raspberry pi in order to know that commands were received properly. Requires further investigaiton into QSerialPort first
@@ -37,6 +42,8 @@ private:
     /// @param[out] timeStop - the time that the light cycle should stop the 'on' state
     /// @return Returns whether the function was able to push the cycle onto the arduino
     bool PushCycleToArduino(QTime timeStart, QTime timeStop);
+
+    void SetLightStatus(bool bStatus);
 
     //Member variables
     Ui::MainWindow *ui;

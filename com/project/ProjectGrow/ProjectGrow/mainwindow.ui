@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>591</width>
-    <height>350</height>
+    <width>800</width>
+    <height>420</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,184 +20,182 @@
    <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTimeEdit" name="StartTime">
+   <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>100</y>
-      <width>100</width>
-      <height>22</height>
+      <x>390</x>
+      <y>310</y>
+      <width>361</width>
+      <height>71</height>
      </rect>
     </property>
-    <property name="date">
-     <date>
-      <year>2021</year>
-      <month>4</month>
-      <day>14</day>
-     </date>
-    </property>
-    <property name="calendarPopup">
-     <bool>true</bool>
-    </property>
-    <property name="time">
-     <time>
-      <hour>6</hour>
-      <minute>30</minute>
-      <second>0</second>
-     </time>
-    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>6</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="pushCycleButton">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>5</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Push Cycle</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Pause</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
-   <widget class="QTimeEdit" name="StopTime">
-    <property name="geometry">
-     <rect>
-      <x>400</x>
-      <y>150</y>
-      <width>100</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="time">
-     <time>
-      <hour>11</hour>
-      <minute>30</minute>
-      <second>0</second>
-     </time>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>100</y>
-      <width>70</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Start Time</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>150</y>
-      <width>70</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Stop Time</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>250</y>
-      <width>80</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="autoFillBackground">
-     <bool>true</bool>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:22pt; font-weight:600; color:#aa0000;&quot;&gt;OFF&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushCycleButton">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>250</y>
-      <width>111</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Push Cycle</string>
-    </property>
-    <property name="flat">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox">
-    <property name="geometry">
-     <rect>
-      <x>400</x>
-      <y>20</y>
-      <width>121</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>20</y>
-      <width>51</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Light Cycle</string>
-    </property>
-   </widget>
-   <widget class="AnalogClock" name="widgetAnalogClock" native="true">
+   <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>10</y>
-      <width>200</width>
-      <height>200</height>
+      <y>20</y>
+      <width>321</width>
+      <height>361</height>
      </rect>
     </property>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="0">
+      <widget class="AnalogClock" name="widgetAnalogClock" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>5</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="LightStatus">
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:22pt; font-weight:600; color:#aa0000;&quot;&gt;OFF&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>250</y>
-      <width>111</width>
-      <height>41</height>
+      <x>390</x>
+      <y>20</y>
+      <width>361</width>
+      <height>271</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Pause</string>
-    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <property name="topMargin">
+      <number>48</number>
+     </property>
+     <property name="bottomMargin">
+      <number>48</number>
+     </property>
+     <property name="verticalSpacing">
+      <number>48</number>
+     </property>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Stop Time&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QTimeEdit" name="StopTime">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="buttonSymbols">
+        <enum>QAbstractSpinBox::UpDownArrows</enum>
+       </property>
+       <property name="time">
+        <time>
+         <hour>11</hour>
+         <minute>30</minute>
+         <second>0</second>
+        </time>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Start Time&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QTimeEdit" name="StartTime">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="buttonSymbols">
+        <enum>QAbstractSpinBox::UpDownArrows</enum>
+       </property>
+       <property name="date">
+        <date>
+         <year>2021</year>
+         <month>4</month>
+         <day>14</day>
+        </date>
+       </property>
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+       <property name="time">
+        <time>
+         <hour>6</hour>
+         <minute>30</minute>
+         <second>0</second>
+        </time>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>591</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionExit"/>
-    <addaction name="actionOpen_Cycle"/>
-    <addaction name="actionExit_2"/>
-    <addaction name="actionSave_Cycle_As"/>
-    <addaction name="actionExit_3"/>
-   </widget>
-   <addaction name="menuFile"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionExit">

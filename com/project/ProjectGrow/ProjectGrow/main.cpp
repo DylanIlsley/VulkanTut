@@ -1,10 +1,16 @@
 #include "mainwindow.h"
 
 #include <QApplication>
+#include <QFile>
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
+    QFile styleFile(":/style/qss/ManjaroMix.qss");
+    styleFile.open(QFile::ReadOnly);
+
+    QString style(styleFile.readAll());
+    app.setStyleSheet(style);
 
     MainWindow w;
     // Make a windowless Frame
@@ -14,5 +20,5 @@ int main(int argc, char *argv[])
     w.setFixedSize(w.geometry().width(), w.geometry().height());
     w.setWindowTitle("Project Grow");
     w.show();
-    return a.exec();
+    return app.exec();
 }
