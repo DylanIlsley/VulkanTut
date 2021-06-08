@@ -9,13 +9,14 @@
 #include <QSerialPortInfo>
 #include <QMessageBox>
 #include <QDebug>
+#include <QtConcurrent/QtConcurrent>
 /// -------------------------------------------------------------------------------------
 /// LOCAL INCLUDE FILES
 ///-------------------------------------------------------------------------------------
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(const QSettings& Settings, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow),
     m_arduino()
@@ -25,8 +26,12 @@ MainWindow::MainWindow(QWidget *parent)
    connect(&m_arduino,&ArduinoClient::ArduinoDataReceived, this, &MainWindow::DataReceived);
    connect(this, &MainWindow::LightCycleChanged, ui->widgetAnalogClock, &AnalogClock::LightCycleChanged);
 
-   // Send prompt to arduino to establish connection
-   m_arduino.SendCommand("SYN");
+
+   m_TimeUpdateTracker = new QTimer(this);
+   connect(m_TimeUpdateTracker, &QTimer::timeout, this, &MainWindow::RequestTimeUpdateThreadFunction);
+   m_TimeUpdateTracker->start(60000);
+   // Call immediately
+    RequestTimeUpdateThreadFunction();
 }
 
 MainWindow::~MainWindow()
@@ -49,6 +54,7 @@ bool MainWindow::PushCycleToArduino(QTime timeStart, QTime timeStop)
     // Get the current time for the arduino
     // NOTE: This is done here instead of by the function caller to keep the arduino time as close as possible to real-time
     QTime timeCurrent = QTime::currentTime();
+    qDebug() << "Sending current time: " + timeCurrent.toString();
 
     QString strArduinoCommand = QString::number(timeCurrent.msecsSinceStartOfDay()) + "," + QString::number(timeStart.msecsSinceStartOfDay()) + "," + QString::number(timeStop.msecsSinceStartOfDay());
 
@@ -74,7 +80,7 @@ void MainWindow::DataReceived(QByteArray readData){
         QTime startTime = QTime::fromMSecsSinceStartOfDay(strlTimes[1].toInt());
         QTime stopTime = QTime::fromMSecsSinceStartOfDay(strlTimes[2].toInt());
 
-
+        qDebug() << "MainWindow - Current Time reply: " + currentTime.toString();
         qDebug() << "MainWindow - Start Time reply: " + startTime.toString();
         qDebug() << "MainWindow - Stop Time reply: " + stopTime.toString();
         LightCycleChanged(startTime, stopTime);
@@ -91,9 +97,13 @@ void MainWindow::DataReceived(QByteArray readData){
         qDebug() << strReadData;
     }
 
-
-
 }
+
+void MainWindow::RequestTimeUpdateThreadFunction(){
+    // Send prompt to arduino to establish connection
+    m_arduino.SendCommand("SYN");
+}
+
 
 void MainWindow::SetLightStatus(bool bStatus){
     if (bStatus){

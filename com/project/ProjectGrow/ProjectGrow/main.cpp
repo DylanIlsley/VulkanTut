@@ -2,6 +2,8 @@
 
 #include <QApplication>
 #include <QFile>
+#include <QSettings>
+#include <QtConcurrent/QtConcurrent>
 
 int main(int argc, char *argv[])
 {
@@ -12,7 +14,10 @@ int main(int argc, char *argv[])
     QString style(styleFile.readAll());
     app.setStyleSheet(style);
 
-    MainWindow w;
+
+    QSettings Settings("C:/.config/ProjectGrow.ini", QSettings::IniFormat);
+
+    MainWindow w(Settings);
     // Make a windowless Frame
     // TODO: Move away from normal frame so we can make something nicer
     // w.setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
@@ -20,5 +25,7 @@ int main(int argc, char *argv[])
     w.setFixedSize(w.geometry().width(), w.geometry().height());
     w.setWindowTitle("Project Grow");
     w.show();
+
+
     return app.exec();
 }

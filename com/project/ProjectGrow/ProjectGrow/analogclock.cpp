@@ -43,6 +43,27 @@ void AnalogClock::paintEvent(QPaintEvent *event)
     // Allows us to use x and y coordinates between -100 and 100
     painter.scale(side/200.0, side/200.0);
 
+    // Draw highlighted arc
+    painter.setPen(Qt::NoPen);
+    // Rotate to start at top
+    //painter.rotate(-180 * 16);
+    //Setting brush
+    QColor BlueArc = QColor(0, 0, 120);
+    BlueArc.setAlphaF(0.2);
+    painter.setBrush(BlueArc);
+
+
+    QRectF rectangle(-100.0, -100.0, 200.0, 200.0);
+    // +90 to correct the angle to start on the y axis
+
+    int startAngle =(m_StartTime.hour()*m_u16HourAngle + m_StartTime.minute()*m_f16MinuteAngle)*16 - 90*16;
+    int spanAngle = ((m_StopTime.hour() - m_StartTime.hour())*m_u16HourAngle + (m_StopTime.minute() - m_StartTime.minute())*m_f16MinuteAngle) *16;
+    // Correction to make it go clockwise rather than counter clockwise
+    startAngle *= -1;
+    spanAngle  *=-1;
+    painter.drawPie(rectangle, startAngle, spanAngle) ;
+
+
     // Drawing the hour hand
     painter.setPen(Qt::NoPen); // Don't want any outline so we use NoPen
     painter.setBrush(hourColour);
@@ -81,24 +102,6 @@ void AnalogClock::paintEvent(QPaintEvent *event)
     }
     painter.restore();*/
 
-    // Draw highlighted arc
-    painter.setPen(Qt::NoPen);
-    // Rotate to start at top
-    //painter.rotate(-180 * 16);
-    //Setting brush
-    QColor BlueArc = QColor(0, 0, 120);
-    BlueArc.setAlphaF(0.2);
-    painter.setBrush(BlueArc);
 
-
-    QRectF rectangle(-100.0, -100.0, 200.0, 200.0);
-    // +90 to correct the angle to start on the y axis
-
-    int startAngle =(m_StartTime.hour()*m_u16HourAngle + m_StartTime.minute()*m_f16MinuteAngle)*16 - 90*16;
-    int spanAngle = ((m_StopTime.hour() - m_StartTime.hour())*m_u16HourAngle + (m_StopTime.minute() - m_StartTime.minute())*m_f16MinuteAngle) *16;
-    // Correction to make it go clockwise rather than counter clockwise
-    startAngle *= -1;
-    spanAngle  *=-1;
-    painter.drawPie(rectangle, startAngle, spanAngle) ;
 }
 

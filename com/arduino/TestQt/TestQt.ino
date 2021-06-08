@@ -132,7 +132,7 @@ void HandleCommand(String strCommand)
   StopTime = cTime(strStopTime.toInt());
   cTime CurrentTime = cTime(strCurrentTime.toInt());
 
-  GrowRTC.setDS1302Time(0, CurrentTime.Minutes(), CurrentTime.Hours(), 0, 7, 6, 2021); 
+  GrowRTC.setDS1302Time(0, CurrentTime.Minutes(), CurrentTime.Hours(), 1, 7, 6, 2021); 
 
   // Send the updated params so there is no delay
   SendParams();
