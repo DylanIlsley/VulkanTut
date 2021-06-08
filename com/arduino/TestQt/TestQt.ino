@@ -1,4 +1,5 @@
 #include <SimpleTimer.h>
+#include <virtuabotixRTC.h>   
 
 SimpleTimer timer;
 SimpleTimer LEDTimer;
@@ -67,10 +68,9 @@ struct cTime{
 
 // Time trackers
 // Defaulted to zero so that it wont be on unless the pc has synced with it at least once since being on
-cTime CurrentTime = cTime(0,0);
 cTime StartTime = cTime(0,0);
 cTime StopTime = cTime(0, 0);
-
+virtuabotixRTC GrowRTC(6, 7, 8); // CLK -> 6 , DAT -> 7, Reset -> 8
 
 //defs
 bool OFF = HIGH;
@@ -85,15 +85,12 @@ int relay = 10;
 bool relayState = OFF; // start off state so that if power goes off we don't ever have the light on longer than it should be
 
 
-
-
 // swaps the state of the light
 void SwapState(){
    // checking  whether the light should be turned on/off next hour
-  ++CurrentTime;
+  
   // Reset the time over 24 hours
-  if (CurrentTime.Hours() >= 24)
-      CurrentTime.reset();
+  cTime CurrentTime(GrowRTC.hours, GrowRTC.minutes);
 
   if (relayState == ON and CurrentTime >= StopTime){
         relayState = OFF;
@@ -107,20 +104,6 @@ void SwapState(){
  
 }
 
-void ShowTime(){
- // int tempHours = NumberHoursInState;
-  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(2000);       
-
-  for (int i=0; i<CurrentTime.Hours(); ++i){
-      digitalWrite(LED_BUILTIN, LOW);
-      delay(500);
-      digitalWrite(LED_BUILTIN, HIGH);
-      delay(500);
-    
-  }
- digitalWrite(LED_BUILTIN, LOW);// turn off till next display
-}
 
 
 void SerialHandler(){
@@ -147,7 +130,9 @@ void HandleCommand(String strCommand)
   
   StartTime = cTime(strStartTime.toInt());
   StopTime = cTime(strStopTime.toInt());
-  CurrentTime = cTime(strCurrentTime.toInt());
+  cTime CurrentTime = cTime(strCurrentTime.toInt());
+
+  GrowRTC.setDS1302Time(0, CurrentTime.Minutes(), CurrentTime.Hours(), 0, 7, 6, 2021); 
 
   // Send the updated params so there is no delay
   SendParams();
@@ -156,6 +141,7 @@ void HandleCommand(String strCommand)
 
 void SendParams()
 {
+  cTime CurrentTime(GrowRTC.hours, GrowRTC.minutes);
   // send with the current store for each variable
   String strReply  = CurrentTime.toString()  + ',' + StartTime.toString() + ',' + StopTime.toString() +  "\n";
   // Need to print time out again
@@ -169,8 +155,12 @@ void setup() {
   pinMode(relay, OUTPUT);
   pinMode(LED_BUILTIN, OUTPUT);
 
+  GrowRTC.setDS1302Time(0, 0, 0, 0, 7, 6, 2021); 
+
   // Setup serial connection
   Serial.begin(9600);
+
+  
    
   // always right off straight away so the light doesn't flicker
   digitalWrite(relay, relayState);
@@ -180,11 +170,11 @@ void setup() {
  // LEDTimer.setInterval(20*sec, ShowTime);
   SerialTimer.setInterval(sec, SerialHandler);
 
-  ShowTime();//want to show time straight away
 }
 
 
 void loop() {
+    GrowRTC.updateTime();
     timer.run();
     LEDTimer.run();
     SerialTimer.run();
