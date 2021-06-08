@@ -100,8 +100,10 @@ void MainWindow::DataReceived(QByteArray readData){
 }
 
 void MainWindow::RequestTimeUpdateThreadFunction(){
-    // Send prompt to arduino to establish connection
-    m_arduino.SendCommand("SYN");
+   if(m_arduino.IsArduinoConnected()){
+       // Send prompt to arduino to establish connection
+       m_arduino.SendCommand("SYN");
+   }
 }
 
 
