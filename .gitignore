@@ -23,3 +23,13 @@ com/project/ProjectGrow/build-ProjectGrow-Desktop_Qt_5_15_2_MinGW_64_bit-Debug/d
 com/project/ProjectGrow/build-ProjectGrow-Desktop_Qt_5_15_2_MinGW_64_bit-Debug/debug/moc_mainwindow.o
 com/project/ProjectGrow/build-ProjectGrow-Desktop_Qt_5_15_2_MinGW_64_bit-Debug/debug/ProjectGrow.exe
 *.o
+*.db
+*.db-wal
+*.db-shm
+*.log
+*.tlog
+*.obj
+*.pdb
+*.ilk
+*.idb
+*.dll

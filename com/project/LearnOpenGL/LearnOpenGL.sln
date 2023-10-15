@@ -13,6 +13,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LearnOpenGL_camera", "Learn
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGL", "..\..\HostLibs\OpenGL\OpenGL.vcxproj", "{B8E468BD-9A57-4450-B1D5-4F81DC06B507}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LearnOpenGL_Colours", "LearnOpenGL_Colours\LearnOpenGL_Colours.vcxproj", "{9FC78B18-23B8-4C61-8096-2B60432F7005}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LearnOpenGL_BasicLighting", "LearnOpenGL_BasicLighting\LearnOpenGL_BasicLighting.vcxproj", "{A6B648F3-C93A-400E-B362-4EB6A9B9B7FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -61,6 +65,22 @@ Global
 		{B8E468BD-9A57-4450-B1D5-4F81DC06B507}.Release|x64.Build.0 = Release|x64
 		{B8E468BD-9A57-4450-B1D5-4F81DC06B507}.Release|x86.ActiveCfg = Release|Win32
 		{B8E468BD-9A57-4450-B1D5-4F81DC06B507}.Release|x86.Build.0 = Release|Win32
+		{9FC78B18-23B8-4C61-8096-2B60432F7005}.Debug|x64.ActiveCfg = Debug|x64
+		{9FC78B18-23B8-4C61-8096-2B60432F7005}.Debug|x64.Build.0 = Debug|x64
+		{9FC78B18-23B8-4C61-8096-2B60432F7005}.Debug|x86.ActiveCfg = Debug|Win32
+		{9FC78B18-23B8-4C61-8096-2B60432F7005}.Debug|x86.Build.0 = Debug|Win32
+		{9FC78B18-23B8-4C61-8096-2B60432F7005}.Release|x64.ActiveCfg = Release|x64
+		{9FC78B18-23B8-4C61-8096-2B60432F7005}.Release|x64.Build.0 = Release|x64
+		{9FC78B18-23B8-4C61-8096-2B60432F7005}.Release|x86.ActiveCfg = Release|Win32
+		{9FC78B18-23B8-4C61-8096-2B60432F7005}.Release|x86.Build.0 = Release|Win32
+		{A6B648F3-C93A-400E-B362-4EB6A9B9B7FD}.Debug|x64.ActiveCfg = Debug|x64
+		{A6B648F3-C93A-400E-B362-4EB6A9B9B7FD}.Debug|x64.Build.0 = Debug|x64
+		{A6B648F3-C93A-400E-B362-4EB6A9B9B7FD}.Debug|x86.ActiveCfg = Debug|Win32
+		{A6B648F3-C93A-400E-B362-4EB6A9B9B7FD}.Debug|x86.Build.0 = Debug|Win32
+		{A6B648F3-C93A-400E-B362-4EB6A9B9B7FD}.Release|x64.ActiveCfg = Release|x64
+		{A6B648F3-C93A-400E-B362-4EB6A9B9B7FD}.Release|x64.Build.0 = Release|x64
+		{A6B648F3-C93A-400E-B362-4EB6A9B9B7FD}.Release|x86.ActiveCfg = Release|Win32
+		{A6B648F3-C93A-400E-B362-4EB6A9B9B7FD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

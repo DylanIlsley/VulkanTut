@@ -143,6 +143,11 @@ public:
 		return m_fZoom;
 	}
 
+	glm::vec3 GetPosition()
+	{
+		return m_Position;
+	}
+
 private:
 	/// Updates the direction vectors of the camera
 	void UpdateCameraVectors()

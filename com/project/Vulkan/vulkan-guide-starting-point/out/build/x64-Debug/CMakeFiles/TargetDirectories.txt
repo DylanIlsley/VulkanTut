@@ -1,0 +1,11 @@
+C:/dev/com/project/Vulkan/vulkan-guide-starting-point/out/build/x64-Debug/CMakeFiles/Shaders.dir
+C:/dev/com/project/Vulkan/vulkan-guide-starting-point/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/dev/com/project/Vulkan/vulkan-guide-starting-point/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
+C:/dev/com/project/Vulkan/vulkan-guide-starting-point/out/build/x64-Debug/third_party/CMakeFiles/vkbootstrap.dir
+C:/dev/com/project/Vulkan/vulkan-guide-starting-point/out/build/x64-Debug/third_party/CMakeFiles/tinyobjloader.dir
+C:/dev/com/project/Vulkan/vulkan-guide-starting-point/out/build/x64-Debug/third_party/CMakeFiles/imgui.dir
+C:/dev/com/project/Vulkan/vulkan-guide-starting-point/out/build/x64-Debug/third_party/CMakeFiles/edit_cache.dir
+C:/dev/com/project/Vulkan/vulkan-guide-starting-point/out/build/x64-Debug/third_party/CMakeFiles/rebuild_cache.dir
+C:/dev/com/project/Vulkan/vulkan-guide-starting-point/out/build/x64-Debug/src/CMakeFiles/vulkan_guide.dir
+C:/dev/com/project/Vulkan/vulkan-guide-starting-point/out/build/x64-Debug/src/CMakeFiles/edit_cache.dir
+C:/dev/com/project/Vulkan/vulkan-guide-starting-point/out/build/x64-Debug/src/CMakeFiles/rebuild_cache.dir
