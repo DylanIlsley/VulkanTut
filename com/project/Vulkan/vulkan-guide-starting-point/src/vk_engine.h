@@ -8,6 +8,42 @@
 //bootstrap library
 #include "VkBootstrap.h"
 
+#include <deque>
+#include <functional>
+
+class PipelineBuilder {
+public:
+	std::vector<VkPipelineShaderStageCreateInfo> _shaderStages;
+	VkPipelineVertexInputStateCreateInfo _vertexInputInfo;
+	VkPipelineInputAssemblyStateCreateInfo _inputAssembly;
+	VkViewport _viewport;
+	VkRect2D _scissor;
+	VkPipelineRasterizationStateCreateInfo _rasterizer;
+	VkPipelineColorBlendAttachmentState _colorBlendAttachment;
+	VkPipelineMultisampleStateCreateInfo _multisampling;
+	VkPipelineLayout _pipelineLayout;
+
+	VkPipeline build_pipeline(VkDevice device, VkRenderPass pass);
+};
+
+struct DeletionQueue
+{
+	std::deque<std::function<void()>> deletors;
+
+	void push_function(std::function<void()>&& function) {
+		deletors.push_back(function);
+	}
+
+	void flush() {
+		// reverse iterate the deletion queue to execute all the functions
+		for (auto it = deletors.rbegin(); it != deletors.rend(); it++) {
+			(*it)(); //call the function
+		}
+
+		deletors.clear();
+	}
+};
+
 class VulkanEngine {
 public:
 
@@ -38,6 +74,16 @@ public:
 	// Mainloop code
 	VkSemaphore _presentSemaphore, _renderSemaphore;
 	VkFence _renderFence;
+
+	// Render pipeline
+	VkPipelineLayout _trianglePipelineLayout;
+	VkPipeline _trianglePipeline;
+	VkPipeline _redTrianglePipeline;
+
+	// Input keys
+	int _selectedShader{ 0 };
+
+	DeletionQueue _mainDeletionQueue;
 
 	bool _isInitialized{ false };
 	int _frameNumber {0};
@@ -73,4 +119,8 @@ private:
 	void init_framebuffers();
 
 	void init_sync_structures();
+
+	void init_pipelines();
+
+	bool load_shader_module(const char* filePath, VkShaderModule* outShaderModule);
 };
