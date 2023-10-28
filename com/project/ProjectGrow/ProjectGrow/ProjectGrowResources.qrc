@@ -1,8 +1,0 @@
-<RCC>
-    <qresource prefix="/style">
-        <file>qss/ManjaroMix.qss</file>
-    </qresource>
-    <qresource prefix="/icons">
-        <file>ico/grow.ico</file>
-    </qresource>
-</RCC>
