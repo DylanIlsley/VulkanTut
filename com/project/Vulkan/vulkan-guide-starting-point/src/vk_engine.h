@@ -68,6 +68,10 @@ struct RenderObject {
 	glm::mat4 transformMatrix;
 };
 
+struct GPUObjectData {
+	glm::mat4 modelMatrix;
+};
+
 struct GPUCameraData {
 	glm::mat4 view;
 	glm::mat4 proj;
@@ -83,6 +87,8 @@ struct FrameData {
 	// Buffer that holds a single GPUCameraData to use when rendering
 	AllocatedBuffer cameraBuffer;
 	VkDescriptorSet globalDescriptor;
+	AllocatedBuffer objectBuffer; // Stores objects for the scene
+	VkDescriptorSet objectDescriptor;
 };
 
 struct GPUSceneData {
@@ -143,6 +149,7 @@ public:
 
 	// Descriptor related
 	VkDescriptorSetLayout _globalSetLayout;
+	VkDescriptorSetLayout _objectSetLayout;
 	VkDescriptorPool _descriptorPool;
 
 	VmaAllocator _allocator; //vma lib allocator
