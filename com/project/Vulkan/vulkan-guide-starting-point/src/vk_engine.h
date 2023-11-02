@@ -13,6 +13,9 @@
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
 
+//number of frames to overlap when rendering
+constexpr unsigned int FRAME_OVERLAP = 2;
+
 class PipelineBuilder {
 public:
 
@@ -65,6 +68,31 @@ struct RenderObject {
 	glm::mat4 transformMatrix;
 };
 
+struct GPUCameraData {
+	glm::mat4 view;
+	glm::mat4 proj;
+	glm::mat4 viewProj;
+};
+
+struct FrameData {
+	VkSemaphore _presentSemaphore, _renderSemaphore;
+	VkFence _renderFence;
+
+	VkCommandPool _commandPool;
+	VkCommandBuffer _mainCommandBuffer;
+	// Buffer that holds a single GPUCameraData to use when rendering
+	AllocatedBuffer cameraBuffer;
+	VkDescriptorSet globalDescriptor;
+};
+
+struct GPUSceneData {
+	glm::vec4 fogColor; // w is for exponent
+	glm::vec4 fogDistances; //x for min, y for max, zw unused.
+	glm::vec4 ambientColor;
+	glm::vec4 sunlightDirection; //w for sun power
+	glm::vec4 sunlightColor;
+};
+
 class VulkanEngine {
 public:
 
@@ -81,16 +109,16 @@ public:
 	VkPhysicalDevice _chosenGPU;
 	VkDevice _device;
 
-	VkSemaphore _presentSemaphore, _renderSemaphore;
-	VkFence _renderFence;
-
 	VkQueue _graphicsQueue;
 	uint32_t _graphicsQueueFamily;
-
-	VkCommandPool _commandPool;
-	VkCommandBuffer _mainCommandBuffer;
 	
 	VkRenderPass _renderPass;
+
+	// Frame storage
+	FrameData _frames[FRAME_OVERLAP];
+	
+	// Getter for the frame we are rendering to right now
+	FrameData& get_current_frame();
 
 	VkSurfaceKHR _surface;
 	VkSwapchainKHR _swapchain;
@@ -113,6 +141,10 @@ public:
 	std::unordered_map<std::string, Material> _materials;
 	std::unordered_map<std::string, Mesh> _meshes;
 
+	// Descriptor related
+	VkDescriptorSetLayout _globalSetLayout;
+	VkDescriptorPool _descriptorPool;
+
 	VmaAllocator _allocator; //vma lib allocator
 
 	//depth resources
@@ -121,6 +153,11 @@ public:
 
 	//the format for the depth image
 	VkFormat _depthFormat;
+
+	VkPhysicalDeviceProperties _gpuProperties;
+
+	GPUSceneData _sceneParameters;
+	AllocatedBuffer _sceneParameterBuffer;
 
 	//initializes everything in the engine
 	void init();
@@ -152,12 +189,16 @@ private:
 
 	void init_scene();
 
+	void init_descriptors();
+
 	//loads a shader module from a spir-v file. Returns false if it errors
 	bool load_shader_module(const char* filePath, VkShaderModule* outShaderModule);
 
 	void load_meshes();
 
 	void upload_mesh(Mesh& mesh);
+
+	AllocatedBuffer create_buffer(size_t allocSize, VkBufferUsageFlags usage, VmaMemoryUsage memoryUsage);
 
 	// Create material and add it to the map
 	Material* create_material(VkPipeline pipeline, VkPipelineLayout layout, const std::string& name);
@@ -169,4 +210,6 @@ private:
 	Mesh* get_mesh(const std::string& name);
 
 	void draw_objects(VkCommandBuffer cmd, RenderObject* first, int count);
+
+	size_t pad_uniform_buffer_size(size_t originalSize);
 };
